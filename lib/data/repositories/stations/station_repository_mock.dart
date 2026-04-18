@@ -10,7 +10,7 @@ class MockStationRepository implements StationRepository {
       address: 'Sihanouk Blvd',
       latitude: 11.5564,
       longitude: 104.9282,
-      availableBikes: 8,
+      availableBikes: 9,
     ),
     Station(
       id: 's2',
@@ -18,7 +18,7 @@ class MockStationRepository implements StationRepository {
       address: 'Kampuchea Krom Blvd',
       latitude: 11.5683,
       longitude: 104.9230,
-      availableBikes: 4,
+      availableBikes: 5,
     ),
     Station(
       id: 's3',
@@ -26,35 +26,106 @@ class MockStationRepository implements StationRepository {
       address: 'Samdech Sothearos Blvd',
       latitude: 11.5626,
       longitude: 104.9306,
+      availableBikes: 7,
+    ),
+    Station(
+      id: 's4',
+      name: 'Wat Phnom',
+      address: 'Street 94',
+      latitude: 11.5735,
+      longitude: 104.9288,
       availableBikes: 6,
+    ),
+    Station(
+      id: 's5',
+      name: 'Aeon Mall 1',
+      address: 'Samdech Sothearos Blvd',
+      latitude: 11.5486,
+      longitude: 104.9297,
+      availableBikes: 8,
+    ),
+    Station(
+      id: 's6',
+      name: 'Olympic Stadium',
+      address: 'Street 215',
+      latitude: 11.5522,
+      longitude: 104.9143,
+      availableBikes: 4,
+    ),
+    Station(
+      id: 's7',
+      name: 'Russian Market',
+      address: 'Street 444',
+      latitude: 11.5417,
+      longitude: 104.9160,
+      availableBikes: 5,
     ),
   ];
 
   final List<Bike> _bikes = [
-    ...List.generate(9, (i) {
-      return Bike(
+    ...List.generate(
+      9,
+      (i) => Bike(
         id: 'b_s1_${i + 1}',
         stationId: 's1',
         slotNumber: i + 1,
-        status: i < 8 ? BikeStatus.available : BikeStatus.booked,
-      );
-    }),
-    ...List.generate(5, (i) {
-      return Bike(
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      5,
+      (i) => Bike(
         id: 'b_s2_${i + 1}',
         stationId: 's2',
         slotNumber: i + 1,
-        status: i < 4 ? BikeStatus.available : BikeStatus.booked,
-      );
-    }),
-    ...List.generate(7, (i) {
-      return Bike(
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      7,
+      (i) => Bike(
         id: 'b_s3_${i + 1}',
         stationId: 's3',
         slotNumber: i + 1,
-        status: i < 6 ? BikeStatus.available : BikeStatus.booked,
-      );
-    }),
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      6,
+      (i) => Bike(
+        id: 'b_s4_${i + 1}',
+        stationId: 's4',
+        slotNumber: i + 1,
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      8,
+      (i) => Bike(
+        id: 'b_s5_${i + 1}',
+        stationId: 's5',
+        slotNumber: i + 1,
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      4,
+      (i) => Bike(
+        id: 'b_s6_${i + 1}',
+        stationId: 's6',
+        slotNumber: i + 1,
+        status: BikeStatus.available,
+      ),
+    ),
+    ...List.generate(
+      5,
+      (i) => Bike(
+        id: 'b_s7_${i + 1}',
+        stationId: 's7',
+        slotNumber: i + 1,
+        status: BikeStatus.available,
+      ),
+    ),
   ];
 
   @override
@@ -67,7 +138,6 @@ class MockStationRepository implements StationRepository {
                 b.stationId == station.id && b.status == BikeStatus.available,
           )
           .length;
-
       return Station(
         id: station.id,
         name: station.name,
@@ -75,8 +145,8 @@ class MockStationRepository implements StationRepository {
         latitude: station.latitude,
         longitude: station.longitude,
         availableBikes: availableCount,
-      );    
-      }).toList();
+      );
+    }).toList();
   }
 
   @override
